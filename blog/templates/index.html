@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{header}}</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/home.css'%}">
+    </head>
+    <body>
+        <div><img src="{% static 'imgs/logo.png'%}" width="50%">
+            {% for item in categories %}
+                <a href="/">{{item.name}}</a>
+                <br/>
+                {%endfor%}
+                {% for post in titles %}
+                    <a href="{% url 'singlepost' post.id %}"><h1 class="title">{{post.title}}</h1></a>
+                    <small>published {{post.published}} in {{post.category.name}} by {{post.author}}</small>
+                    <p>{{post.body|truncatewords:10}}...<a href="{% url 'singlepost' post.id %}">Read more</a></abbr></p>
+                    <br/>
+                    {%endfor%}
+                </body>
+            </html>
